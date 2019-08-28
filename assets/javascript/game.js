@@ -18,19 +18,19 @@ var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
 // initialize game on first load
 textWins.textContent = 0;
 textLosses.textContent = 0;
-textLettersUsed.textContent = "";
+textLettersUsed.textContent = "\xa0";
 var newWord = randomWord(words);
 textWord.textContent = refreshWord(newWord);
 textGuesses.textContent = calcGuesses(newWord);
 
 /// begin list of functions
 // pick a random word stored in an array
-function randomWord (arr) {
+function randomWord(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // calculate amount of guesses based on word length
-function calcGuesses (word) {
+function calcGuesses(word) {
     var guesses = word.length -1;
     for (var i = 0; i < word.length; i++) {
         // ignore special characters and spaces
@@ -42,7 +42,7 @@ function calcGuesses (word) {
 }
 
 // hides the word in document
-function refreshWord (word) {
+function refreshWord(word) {
     var toHide = arrWord(word);
     var newMessage = "";
     for (var w = 0; w < toHide.length; w++) {
@@ -63,7 +63,7 @@ function refreshWord (word) {
 }
 
 // turns a word into an array of objects -- to be used for guessing individual letters
-function arrWord (word) {
+function arrWord(word) {
     var newWord = [];
     for (var w = 0; w < word.length; w++) {
     var newObj = {};
@@ -73,4 +73,9 @@ function arrWord (word) {
     }
     console.log(newWord);
     return newWord;
+}
+
+// score function
+function score() {
+
 }

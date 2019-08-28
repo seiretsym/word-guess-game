@@ -49,24 +49,58 @@
             </div>
         </div>
 
-        <!-- Row 3 - Word Area -->
+        <!-- Row 3 - Word Theme -->
         <div class="row">
             <div class="col-sm-12 p-0">
-                <div class="card">
-                    <div class="card-title bg-secondary text-warning text-center m-0 pt-3">
+                <div class="card border-bottom-0">
+                    <div class="card-body bg-secondary text-warning text-center">
                         <h3>Theme: Final Fantasy XIV</h3>
-                    </div>
-                    <div class="card-body bg-secondary text-light text-center">
-                        <h3>Word: <span id="word" class="text-warning">_ _ _ _ _</span></h3>
-                    </div>
-                    <div class="card-text bg-secondary text-light text-center pb-3">
-                        <h5>Letters used: <span id="letters-used" class="text-warning">a b c</span></h5>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Row 4 - Instructions/Rules -->
+        <!-- Row 4 - Word Area -->
+        <div class="row">
+            <div class="col-sm-6 p-0">
+                <div class="card border-bottom-0 border-top-0 border-right-0">
+                    <div class="card-body bg-secondary text-light text-right">
+                        <!-- Label -->
+                        <h3>Word:</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 p-0">
+                <div class="card border-bottom-0 border-top-0 border-left-0">
+                    <div class="card-body bg-secondary text-light text-left">
+                        <!-- Masked/Unveiled Word -->
+                        <h3><span id="word" class="text-warning">_ _ _ _ _</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Letters Used -->
+        <div class="row">
+            <div class="col-sm-6 p-0">
+                <div class="card border-right-0 border-top-0">
+                    <div class="card-body bg-secondary text-light text-right">
+                        <!-- Label -->
+                        <h5>Letters used:</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 p-0">
+                <div class="card border-left-0 border-top-0">
+                    <div class="card-body bg-secondary text-light text-left">
+                        <!-- Letters Typed/Used -->
+                        <h5><span id="letters-used" class="text-warning">a b c</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 5 - Instructions/Rules -->
         <div class="row">
             <div class="col-sm-12 p-0">
                 <div class="card">
@@ -78,7 +112,7 @@
             </div>
         </div>
       </div>
-      
+
     <!-- link relevant .js file to to document -->
     <script src="assets/javascript/game.js"></script> 
   </body>
