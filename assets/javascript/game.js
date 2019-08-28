@@ -1,5 +1,4 @@
-// begin work on word guess game
-
+/// begin work on word guess game
 // declare variables
 var textWins = document.getElementById("wins"),
     textLosses = document.getElementById("losses"),
@@ -8,7 +7,7 @@ var textWins = document.getElementById("wins"),
     textWord = document.getElementById("word");
 
 // word array
-var words = ["eorzea", "lalafell", "hume", "miqote", "roegadyn", "hrothgar",
+var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
              "au ra", "viera", "warrior", "paladin", "dark knight", "gunbreaker",
              "white mage", "astrologian", "scholar", "black mage", "summoner",
              "red mage", "monk", "ninja", "samurai", "dragoon", "bard", "machinist",
@@ -21,9 +20,22 @@ textWins.textContent = 0;
 textLosses.textContent = 0;
 textLettersUsed.textContent = "";
 textWord.textContent = randomWord(words);
-textGuesses.textContent = textWord.textContent.length - 1;
+textGuesses.textContent = calcGuesses(textWord.textContent);
 
-
+/// begin list of functions
+// pick a random word stored in an array
 function randomWord (arr) {
     return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// calculate amount of guesses based on word length
+function calcGuesses (word) {
+    var guesses = word.length -1;
+    for (var i = 0; i < word.length; i++) {
+        // ignore special characters and spaces
+        if (word[i] === " " || word[i] === "'") {
+            guesses--;
+        }
+    }
+    return guesses;
 }
