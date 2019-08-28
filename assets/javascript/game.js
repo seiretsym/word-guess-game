@@ -58,6 +58,7 @@ function hideWord (word) {
     return newMessage;
 }
 
+// turns a word into an array -- to be used for guessing individual letters
 function arrWord (word) {
     var newWord = [];
     for (var w = 0; w < word.length; w++) {
