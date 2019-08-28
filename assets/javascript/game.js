@@ -16,4 +16,7 @@ var words = ["eorzea", "lalafell", "hume", "miqote", "roegadyn", "hrothgar",
              "blacksmith", "carpenter", "culinarian", "goldsmith", "leatherworker",
              "weaver"];
              
-
+// initialize game on first load
+textWins.textContent = 0;
+textLosses.textContent = 0;
+textLettersUsed.textContent = "";
