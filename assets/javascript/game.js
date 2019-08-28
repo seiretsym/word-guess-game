@@ -20,3 +20,10 @@ var words = ["eorzea", "lalafell", "hume", "miqote", "roegadyn", "hrothgar",
 textWins.textContent = 0;
 textLosses.textContent = 0;
 textLettersUsed.textContent = "";
+textWord.textContent = randomWord(words);
+textGuesses.textContent = textWord.textContent.length - 1;
+
+
+function randomWord (arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
