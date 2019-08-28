@@ -19,8 +19,9 @@ var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
 textWins.textContent = 0;
 textLosses.textContent = 0;
 textLettersUsed.textContent = "";
-textWord.textContent = hideWord(randomWord(words));
-textGuesses.textContent = calcGuesses(textWord.textContent);
+var newWord = randomWord(words);
+textWord.textContent = refreshWord(newWord);
+textGuesses.textContent = calcGuesses(newWord);
 
 /// begin list of functions
 // pick a random word stored in an array
@@ -41,28 +42,35 @@ function calcGuesses (word) {
 }
 
 // hides the word in document
-function hideWord (word) {
+function refreshWord (word) {
     var toHide = arrWord(word);
     var newMessage = "";
     for (var w = 0; w < toHide.length; w++) {
-        if (toHide[w] === " ") {
-            newMessage = newMessage + "";
+        if (toHide[w].l === " ") {
+            newMessage = newMessage + "\xa0" + " ";
         }
-        else if (toHide[w] === "'") {
-            newMessage = newMessage + "'";
+        else if (toHide[w].l === "'") {
+            newMessage = newMessage + "' ";
+        }
+        else if (toHide[w].g === false) {
+            newMessage = newMessage + "_ ";
         }
         else {
-            newMessage = newMessage + "_ ";
+            newMessage = newMessage + toHide[w].l + " ";
         }
     }
     return newMessage;
 }
 
-// turns a word into an array -- to be used for guessing individual letters
+// turns a word into an array of objects -- to be used for guessing individual letters
 function arrWord (word) {
     var newWord = [];
     for (var w = 0; w < word.length; w++) {
-        newWord.push(word[w]);
+    var newObj = {};
+        newObj["l"] = word[w];
+        newObj["g"] = false;
+        newWord.push(newObj);
     }
+    console.log(newWord);
     return newWord;
 }
