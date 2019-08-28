@@ -8,4 +8,12 @@ var textWins = document.getElementById("wins"),
     textWord = document.getElementById("word");
 
 // word array
-var words [];
+var words = ["eorzea", "lalafell", "hume", "miqote", "roegadyn", "hrothgar",
+             "au ra", "viera", "warrior", "paladin", "dark knight", "gunbreaker",
+             "white mage", "astrologian", "scholar", "black mage", "summoner",
+             "red mage", "monk", "ninja", "samurai", "dragoon", "bard", "machinist",
+             "dancer", "miner", "botanist", "fisher", "alchemist", "armorer",
+             "blacksmith", "carpenter", "culinarian", "goldsmith", "leatherworker",
+             "weaver"];
+             
+
