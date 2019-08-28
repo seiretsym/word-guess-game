@@ -7,16 +7,72 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <title>Guess the Word by Kerwin Hy</title>
   </head>
-  <body>
-    <h1>Hello, world!</h1>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <body>
+    <div class="container">
+        <!-- Row 1 - Game Title-->
+        <div class="row">
+          <div class="col-lg-12 p-0">
+            <div class="card">
+                <div class="card-body bg-secondary text-light text-center">
+                    <h1>Guess the Word!</h1>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2 - Score -->
+        <div class="row">
+            <div class="col-sm-4 p-0">
+                <div class="card">
+                    <div class="card-body bg-secondary text-light text-center">
+                        <h5>Wins: <span id="wins" class="text-warning">0</span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 p-0">
+                <div class="card">
+                    <div class="card-body bg-secondary text-light text-center">
+                        <h5>Losses: <span id="losses" class="text-warning">0</span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 p-0">
+                <div class="card">
+                    <div class="card-body bg-secondary text-light text-center">
+                        <h5>Guesses: <span id="guesses" class="text-warning">10</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row 3 - Word Area -->
+        <div class="row">
+            <div class="col-sm-12 p-0">
+                <div class="card">
+                    <div class="card-title bg-secondary text-secondary text-center m-0 pt-3">
+                        <h3>place image here, maybe</h3>
+                    </div>
+                    <div class="card-body bg-secondary text-light text-center">
+                        <h3>Word: <span id="word" class="text-warning">_ _ _ _ _</span></h3>
+                    </div>
+                    <div class="card-text bg-secondary text-light text-center pb-3">
+                        <h5>Letters used: <span id="letters-used" class="text-warning">a b c</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row 4 - Instructions -->
+        <div class="row">
+            <div class="col-sm-12 p-0">
+                <div class="card">
+                    <div class="card-body bg-secondary text-light text-center">
+                        <h3>Start Typing to Play!</h3>
+                        <p>Guess all the letters to score. Run out of guesses and lose!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
   </body>
 </html>
