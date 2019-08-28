@@ -79,3 +79,31 @@ function arrWord(word) {
 function score() {
 
 }
+
+// lose function
+function lose() {
+
+}
+
+// check if key pressed is in the alphabet
+function keyAlpha(key) {
+    var alpha = ["abcdefghijklmnopqrstuvwxyz"];
+    for (var k = 0; k < alpha.length; k++) {
+        if (key === alpha[0][k]) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+/// playing the game by typing alpha characters
+document.onkeyup = function(event) {
+    var key = event.key;
+
+    // check if key pressed is in the alphabet -- ignore the rest
+    if (keyAlpha((key)) {
+        // do something
+    }
+}
