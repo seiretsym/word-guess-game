@@ -19,7 +19,7 @@ var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
 textWins.textContent = 0;
 textLosses.textContent = 0;
 textLettersUsed.textContent = "";
-textWord.textContent = randomWord(words);
+textWord.textContent = hideWord(randomWord(words));
 textGuesses.textContent = calcGuesses(textWord.textContent);
 
 /// begin list of functions
@@ -38,4 +38,30 @@ function calcGuesses (word) {
         }
     }
     return guesses;
+}
+
+// hides the word in document
+function hideWord (word) {
+    var toHide = arrWord(word);
+    var newMessage = "";
+    for (var w = 0; w < toHide.length; w++) {
+        if (toHide[w] === " ") {
+            newMessage = newMessage + "";
+        }
+        else if (toHide[w] === "'") {
+            newMessage = newMessage + "'";
+        }
+        else {
+            newMessage = newMessage + "_ ";
+        }
+    }
+    return newMessage;
+}
+
+function arrWord (word) {
+    var newWord = [];
+    for (var w = 0; w < word.length; w++) {
+        newWord.push(word[w]);
+    }
+    return newWord;
 }
