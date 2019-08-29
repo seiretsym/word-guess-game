@@ -5,7 +5,8 @@ var textWins = document.getElementById("wins"),
     textGuesses = document.getElementById("guesses"),
     textLettersUsed = document.getElementById("letters-used"),
     textWord = document.getElementById("word"),
-    textInfo = document.getElementById("info");
+    textInfo = document.getElementById("info"),
+    textLastWord = document.getElementById("last-word");
 
 // word array
 var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
@@ -100,15 +101,17 @@ function mkObjArr(word) {
 // score function
 function score() {
     textWins.textContent = parseInt(textWins.textContent) + 1;
+    textLastWord.textContent = guessWord;
     newWord();
-    textInfo.textContent = "Congratulations! You guessed all the letters.";
+    textInfo.textContent = "Congratulations! You guessed all the letters to the word ";
 }
 
 // lose function
 function lose() {
     textLosses.textContent = parseInt(textLosses.textContent) + 1;
     newWord();
-    textInfo.textContent = "Awww... You didn't get them all. Try again!";
+    textInfo.textContent = "Awww... You didn't get them all. ";
+    textLastWord.textContent = "Better luck next time!";
 }
 
 // check if key pressed is in the alphabet
@@ -203,6 +206,7 @@ function checkChar(key) {
 // update letters used
 function updateLettersUsed() {
     textLettersUsed.textContent = "\xa0"; // reset so it doesn't stack
+    textLastWord.textContent = ""; // wipe last word
     for (var i = 1; i < charArray.length; i++) {
         textLettersUsed.textContent = textLettersUsed.textContent + charArray[i] + ", ";
     }
