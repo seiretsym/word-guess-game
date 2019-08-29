@@ -18,7 +18,7 @@ A word guessing game based off of Hangman. Web Layout designed with Bootstrap. N
 
 ## Technologies Used
 - HTML
-- CSS (reset.css)
+- CSS (reset.css borrowed from http://meyerweb.com/eric/tools/css/reset)
 - Bootstrap
 - Javascript
 - Git

@@ -100,25 +100,29 @@ function mkObjArr(word) {
 
 // score function
 function score() {
-    textWins.textContent = parseInt(textWins.textContent) + 1;
+    textWins.textContent = parseInt(textWins.textContent) + 1; // update wins
     textLastWord.textContent = guessWord;
-    newWord();
+    newWord(); // generate a new word
+    // let user know score increased
     textInfo.textContent = "Congratulations! You guessed all the letters to the word ";
 }
 
 // lose function
 function lose() {
-    textLosses.textContent = parseInt(textLosses.textContent) + 1;
-    newWord();
-    textInfo.textContent = "Awww... You didn't get them all. ";
+    textLosses.textContent = parseInt(textLosses.textContent) + 1; // update losses
+    newWord(); // generate a new word
+    // let user know they ran out of guesses
+    textInfo.textContent = "Awww... You ran out of guesses. ";
     textLastWord.textContent = "Better luck next time!";
 }
 
 // check if key pressed is in the alphabet
 function keyAlpha(key) {
+    // alphabet array!
     var alpha = ["abcdefghijklmnopqrstuvwxyz"];
     var boolKey = false;
 
+    // loop to check if key pressed is an alphabet
     for (var k = 0; k < alpha[0].length; k++) {
         if (key == alpha[0][k]) {
             boolKey = true;
@@ -129,7 +133,7 @@ function keyAlpha(key) {
     if (boolKey) {
         return true;
     }
-
+    // return false if it's not an alphabet
     else {
         return false;
     }
@@ -139,6 +143,7 @@ function keyAlpha(key) {
 function checkWord(key, word) {
     var boolKey = false;
     if (checkChar(key)) {
+        // check whether key matches a character in the word if it hasn't already been used
         for (var k = 0; k < word.length; k++) {
             if (key == word[k].l) {
                 word[k].g = true;
@@ -147,12 +152,13 @@ function checkWord(key, word) {
             }
         }
     }
-
+    // if the letter has been used, let the user know
     else {
         textInfo.textContent = "You've already guessed that letter!";
         boolKey = true;
     }
-
+    // key pressed hasn't been used and doesn't match a character in the word
+    // call updateGuesses() to reduce remaining guesses
     if (!(boolKey)) {
         updateGuesses();
         textInfo.textContent = "\xa0";
@@ -162,6 +168,7 @@ function checkWord(key, word) {
 // did you win?
 function checkWin () {
     var win = true;
+    // checks if every letter has been guessed
     if (parseInt(textGuesses.textContent) > 0) {
         for (var i = 0; i < arrayWord.length; i++) {
             if (arrayWord[i].g === false) {
@@ -169,10 +176,12 @@ function checkWin () {
             }
         }
     }
+    // if remaining guesses = 0 call lose function
     else {
         win = false;
         lose();
     }
+    // if above loop doesn't return false then call score function
     if (win) {
         score();
     }
@@ -186,18 +195,22 @@ function updateGuesses() {
 // check if letter has already been used // if not, add to list
 function checkChar(key) {
     var boolKey = false;
+    // loop to check every character in charArray
     for (var k = 0; k < charArray.length; k++) {
         console.log(charArray[k]);
+        // if the key pressed matches a character in charArray set boolKey to true
         if (key === charArray[k]) {
             boolKey = true;
         }
     }
 
+    // return false because the character was already guessed
     if (boolKey) {
         return false;
     }
-
+    // everything is fine
     else {
+        // add guessed character to charArray
         charArray.push(key);
         return true;
     }
@@ -207,6 +220,7 @@ function checkChar(key) {
 function updateLettersUsed() {
     textLettersUsed.textContent = "\xa0"; // reset so it doesn't stack
     textLastWord.textContent = ""; // wipe last word
+    // update textLettersUsed.textContent with guessed letters
     for (var i = 1; i < charArray.length; i++) {
         textLettersUsed.textContent = textLettersUsed.textContent + charArray[i] + ", ";
     }
