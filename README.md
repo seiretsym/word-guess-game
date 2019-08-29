@@ -32,6 +32,7 @@ LinkedIn: [https://www.linkedin.com/in/kerwinhy/](https://www.linkedin.com/in/ke
 GitHub: [https://github.com/seiretsym](https://github.com/seiretsym)<br>
 
 ## Code Snippet
+I chose these lines of code because they wrap up majority of the functions and logic used for the game:
 ```
 // check if key pressed is in the alphabet
 function keyAlpha(key) {
