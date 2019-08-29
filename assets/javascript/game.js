@@ -71,7 +71,6 @@ function arrWord(word) {
         newObj["g"] = false;
         newWord.push(newObj);
     }
-    console.log(newWord);
     return newWord;
 }
 
@@ -88,22 +87,35 @@ function lose() {
 // check if key pressed is in the alphabet
 function keyAlpha(key) {
     var alpha = ["abcdefghijklmnopqrstuvwxyz"];
-    for (var k = 0; k < alpha.length; k++) {
-        if (key === alpha[0][k]) {
-            return true;
-        }
-        else {
-            return false;
+    var boolKey;
+
+    for (var k = 0; k < alpha[0].length; k++) {
+        if (key == alpha[0][k]) {
+            boolKey = true;
         }
     }
+
+    if (boolKey) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+// checks if key pressed is a character in the word
+function checkWord(key) {
+
 }
 
 /// playing the game by typing alpha characters
 document.onkeyup = function(event) {
     var key = event.key;
+    // key = key.toLowerCase(); // make sure caps count
 
     // check if key pressed is in the alphabet -- ignore the rest
-    if (keyAlpha((key)) {
-        // do something
+    if (keyAlpha(key)) {
+        // check if key pressed is a character in the word
+        checkWord(key);
     }
 }
