@@ -1,7 +1,5 @@
 # word-guess-game
 
-# responsive-portfolio
-
 ## Summary
 A word guessing game based off of Hangman. Written with Javascript to control textContent in HTML elements. Played by typing with your keyboard!
 
