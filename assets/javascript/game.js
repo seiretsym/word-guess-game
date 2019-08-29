@@ -25,6 +25,15 @@ textWord.textContent = refreshWord(arrayWord);
 textGuesses.textContent = calcGuesses(guessWord);
 
 /// begin list of functions
+
+// get a new word
+function newWord () {
+    guessWord = randomWord(words);
+    arrayWord = mkObjArr(guessWord);
+    textWord.textContent = refreshWord(arrayWord);
+    textGuesses.textContent = calcGuesses(guessWord);
+}
+
 // pick a random word stored in an array
 function randomWord(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
@@ -76,18 +85,20 @@ function mkObjArr(word) {
 
 // score function
 function score() {
-
+    textWins.textContent = parseInt(textWins.textContent) + 1;
+    newWord();
 }
 
 // lose function
 function lose() {
-
+    textLosses.textContent = parseInt(textLosses.textContent) + 1;
+    newWord();
 }
 
 // check if key pressed is in the alphabet
 function keyAlpha(key) {
     var alpha = ["abcdefghijklmnopqrstuvwxyz"];
-    var boolKey;
+    var boolKey = false;
 
     for (var k = 0; k < alpha[0].length; k++) {
         if (key == alpha[0][k]) {
@@ -105,18 +116,47 @@ function keyAlpha(key) {
 
 // checks if key pressed is a character in the word
 function checkWord(key, word) {
+    var boolKey = false;
     for (var k = 0; k < word.length; k++) {
         if (key == word[k].l) {
             word[k].g = true;
-            console.log(word);
             textWord.textContent = refreshWord(word);
+            boolKey = true;
         }
     }
+
+    if (!(boolKey)) {
+        updateGuesses();
+    }
+    else {
+        checkWin();
+    }
+}
+
+// did you win?
+function checkWin () {
+    var win = true;
+    for (var i = 0; i < arrayWord.length; i++) {
+        if (arrayWord[i].g === false) {
+            win = false;
+        }
+    }
+    if (win) {
+        score();
+    }
+}
+
+// update amount of guesses if incorrect key is pressed
+function updateGuesses() {
+    textGuesses.textContent = parseInt(textGuesses.textContent)- 1;
+    if (textGuesses.textContent == 0) {
+        lose();
+    } 
 }
 
 // check if letter has already been used // if not, add to list
 function checkChar () {
-    
+
 }
 
 /// playing the game by typing alpha characters
