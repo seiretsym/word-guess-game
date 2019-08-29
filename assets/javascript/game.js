@@ -19,9 +19,10 @@ var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
 textWins.textContent = 0;
 textLosses.textContent = 0;
 textLettersUsed.textContent = "\xa0";
-var newWord = randomWord(words);
-textWord.textContent = refreshWord(newWord);
-textGuesses.textContent = calcGuesses(newWord);
+var guessWord = randomWord(words);
+var arrayWord = mkObjArr(guessWord);
+textWord.textContent = refreshWord(arrayWord);
+textGuesses.textContent = calcGuesses(guessWord);
 
 /// begin list of functions
 // pick a random word stored in an array
@@ -43,27 +44,26 @@ function calcGuesses(word) {
 
 // hides the word in document
 function refreshWord(word) {
-    var toHide = arrWord(word);
     var newMessage = "";
-    for (var w = 0; w < toHide.length; w++) {
-        if (toHide[w].l === " ") {
+    for (var w = 0; w < word.length; w++) {
+        if (word[w].l === " ") {
             newMessage = newMessage + "\xa0" + " ";
         }
-        else if (toHide[w].l === "'") {
+        else if (word[w].l === "'") {
             newMessage = newMessage + "' ";
         }
-        else if (toHide[w].g === false) {
+        else if (word[w].g === false) {
             newMessage = newMessage + "_ ";
         }
         else {
-            newMessage = newMessage + toHide[w].l + " ";
+            newMessage = newMessage + word[w].l + " ";
         }
     }
     return newMessage;
 }
 
 // turns a word into an array of objects -- to be used for guessing individual letters
-function arrWord(word) {
+function mkObjArr(word) {
     var newWord = [];
     for (var w = 0; w < word.length; w++) {
     var newObj = {};
@@ -104,18 +104,29 @@ function keyAlpha(key) {
 }
 
 // checks if key pressed is a character in the word
-function checkWord(key) {
+function checkWord(key, word) {
+    for (var k = 0; k < word.length; k++) {
+        if (key == word[k].l) {
+            word[k].g = true;
+            console.log(word);
+            textWord.textContent = refreshWord(word);
+        }
+    }
+}
 
+// check if letter has already been used // if not, add to list
+function checkChar () {
+    
 }
 
 /// playing the game by typing alpha characters
 document.onkeyup = function(event) {
     var key = event.key;
-    // key = key.toLowerCase(); // make sure caps count
+    key = key.toLowerCase(); // make sure caps count
 
     // check if key pressed is in the alphabet -- ignore the rest
     if (keyAlpha(key)) {
         // check if key pressed is a character in the word
-        checkWord(key);
+        checkWord(key, arrayWord);
     }
 }
