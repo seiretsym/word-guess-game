@@ -82,7 +82,7 @@ function mkObjArr(word) {
     var newWord = [];
     for (var w = 0; w < word.length; w++) {
         var newObj = {};
-        
+
         // set obj g to true so it ignores special characters
         if (word[w] == "'" || word[w] == " ") {
             newObj["l"] = word[w];
@@ -122,9 +122,11 @@ function keyAlpha(key) {
         }
     }
 
+    // if key pressed is alphabet return true
     if (boolKey) {
         return true;
     }
+
     else {
         return false;
     }
@@ -216,6 +218,6 @@ document.onkeyup = function(event) {
         // check if key pressed is a character in the word
         checkWord(key, arrayWord);
     }
-    updateLettersUsed();
-    checkWin();
+    updateLettersUsed(); // refresh letters used textcontent
+    checkWin(); // check if user won
 }
