@@ -1,7 +1,7 @@
 # word-guess-game
 
 ## Summary
-A word guessing game based off of Hangman. Written with Javascript to control textContent in HTML elements. Played by typing with your keyboard!
+A word guessing game based off of Hangman. Web Layout designed with Bootstrap. No use of custom css except for reset. Written with Javascript to control textContent in HTML elements. Played by typing with your keyboard!
 
 *Rules explained in browser*
 
@@ -18,6 +18,7 @@ A word guessing game based off of Hangman. Written with Javascript to control te
 
 ## Technologies Used
 - HTML
+- CSS (reset.css)
 - Bootstrap
 - Javascript
 - Git
