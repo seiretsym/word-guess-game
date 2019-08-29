@@ -17,11 +17,12 @@ var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
              "weaver"];
              
 // initialize game on first load
+var guessWord = randomWord(words);
+var arrayWord = mkObjArr(guessWord);
+var charArray = ["\xa0"];
 textWins.textContent = 0;
 textLosses.textContent = 0;
 textLettersUsed.textContent = "\xa0";
-var guessWord = randomWord(words);
-var arrayWord = mkObjArr(guessWord);
 textWord.textContent = refreshWord(arrayWord);
 textGuesses.textContent = calcGuesses(guessWord);
 textInfo.textContent = "\xa0";
@@ -34,6 +35,8 @@ function newWord () {
     arrayWord = mkObjArr(guessWord);
     textWord.textContent = refreshWord(arrayWord);
     textGuesses.textContent = calcGuesses(guessWord);
+    charArray = ["\xa0"];
+    textInfo.textContent = "\xa0";
 }
 
 // pick a random word stored in an array
@@ -122,34 +125,40 @@ function keyAlpha(key) {
 // checks if key pressed is a character in the word
 function checkWord(key, word) {
     var boolKey = false;
-    if (checkChar) {
+    if (checkChar(key)) {
         for (var k = 0; k < word.length; k++) {
             if (key == word[k].l) {
                 word[k].g = true;
-                textWord.textContent = refreshWord(word);
                 boolKey = true;
+                textWord.textContent = refreshWord(word);
             }
         }
     }
+
     else {
         textInfo.textContent = "You've already guessed that letter!";
+        boolKey = true;
     }
 
     if (!(boolKey)) {
         updateGuesses();
-    }
-    else {
-        checkWin();
+        textInfo.textContent = "\xa0";
     }
 }
 
 // did you win?
 function checkWin () {
     var win = true;
-    for (var i = 0; i < arrayWord.length; i++) {
-        if (arrayWord[i].g === false) {
-            win = false;
+    if (parseInt(textGuesses.textContent) > 0) {
+        for (var i = 0; i < arrayWord.length; i++) {
+            if (arrayWord[i].g === false) {
+                win = false;
+            }
         }
+    }
+    else {
+        win = false;
+        lose();
     }
     if (win) {
         score();
@@ -159,14 +168,34 @@ function checkWin () {
 // update amount of guesses if incorrect key is pressed
 function updateGuesses() {
     textGuesses.textContent = parseInt(textGuesses.textContent) - 1;
-    if (textGuesses.textContent == 0) {
-        lose();
-    } 
 }
 
 // check if letter has already been used // if not, add to list
-function checkChar (key) {
+function checkChar(key) {
+    var boolKey = false;
+    for (var k = 0; k < charArray.length; k++) {
+        console.log(charArray[k]);
+        if (key === charArray[k]) {
+            boolKey = true;
+        }
+    }
 
+    if (boolKey) {
+        return false;
+    }
+
+    else {
+        charArray.push(key);
+        return true;
+    }
+}
+
+// update letters used
+function updateLettersUsed() {
+    textLettersUsed.textContent = "\xa0"; // reset so it doesn't stack
+    for (var i = 1; i < charArray.length; i++) {
+        textLettersUsed.textContent = textLettersUsed.textContent + charArray[i] + ", ";
+    }
 }
 
 /// playing the game by typing alpha characters
@@ -179,4 +208,6 @@ document.onkeyup = function(event) {
         // check if key pressed is a character in the word
         checkWord(key, arrayWord);
     }
+    updateLettersUsed();
+    checkWin();
 }
