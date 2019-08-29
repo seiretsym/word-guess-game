@@ -4,7 +4,8 @@ var textWins = document.getElementById("wins"),
     textLosses = document.getElementById("losses"),
     textGuesses = document.getElementById("guesses"),
     textLettersUsed = document.getElementById("letters-used"),
-    textWord = document.getElementById("word");
+    textWord = document.getElementById("word"),
+    textInfo = document.getElementById("info");
 
 // word array
 var words = ["eorzea", "lalafell", "hume", "miqo'te", "roegadyn", "hrothgar",
@@ -23,6 +24,7 @@ var guessWord = randomWord(words);
 var arrayWord = mkObjArr(guessWord);
 textWord.textContent = refreshWord(arrayWord);
 textGuesses.textContent = calcGuesses(guessWord);
+textInfo.textContent = "\xa0";
 
 /// begin list of functions
 
@@ -68,6 +70,7 @@ function refreshWord(word) {
             newMessage = newMessage + word[w].l + " ";
         }
     }
+    textInfo.textContent = "\xa0"; // clear info message
     return newMessage;
 }
 
@@ -87,12 +90,14 @@ function mkObjArr(word) {
 function score() {
     textWins.textContent = parseInt(textWins.textContent) + 1;
     newWord();
+    textInfo.textContent = "Congratulations! You guessed all the letters.";
 }
 
 // lose function
 function lose() {
     textLosses.textContent = parseInt(textLosses.textContent) + 1;
     newWord();
+    textInfo.textContent = "Awww... You didn't get them all. Try again!";
 }
 
 // check if key pressed is in the alphabet
@@ -117,12 +122,17 @@ function keyAlpha(key) {
 // checks if key pressed is a character in the word
 function checkWord(key, word) {
     var boolKey = false;
-    for (var k = 0; k < word.length; k++) {
-        if (key == word[k].l) {
-            word[k].g = true;
-            textWord.textContent = refreshWord(word);
-            boolKey = true;
+    if (checkChar) {
+        for (var k = 0; k < word.length; k++) {
+            if (key == word[k].l) {
+                word[k].g = true;
+                textWord.textContent = refreshWord(word);
+                boolKey = true;
+            }
         }
+    }
+    else {
+        textInfo.textContent = "You've already guessed that letter!";
     }
 
     if (!(boolKey)) {
@@ -148,14 +158,14 @@ function checkWin () {
 
 // update amount of guesses if incorrect key is pressed
 function updateGuesses() {
-    textGuesses.textContent = parseInt(textGuesses.textContent)- 1;
+    textGuesses.textContent = parseInt(textGuesses.textContent) - 1;
     if (textGuesses.textContent == 0) {
         lose();
     } 
 }
 
 // check if letter has already been used // if not, add to list
-function checkChar () {
+function checkChar (key) {
 
 }
 
