@@ -81,10 +81,18 @@ function refreshWord(word) {
 function mkObjArr(word) {
     var newWord = [];
     for (var w = 0; w < word.length; w++) {
-    var newObj = {};
-        newObj["l"] = word[w];
-        newObj["g"] = false;
-        newWord.push(newObj);
+        var newObj = {};
+        
+        // set obj g to true so it ignores special characters
+        if (word[w] == "'" || word[w] == " ") {
+            newObj["l"] = word[w];
+            newObj["g"] = false;
+        }
+        else {
+            newObj["l"] = word[w];
+            newObj["g"] = false;
+            newWord.push(newObj);
+        }
     }
     return newWord;
 }
